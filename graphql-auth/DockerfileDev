@@ -1,0 +1,15 @@
+FROM node:20
+
+WORKDIR /app
+
+COPY ["package.json", "/app/"]
+
+RUN npm install -g pnpm
+
+RUN pnpm install -g prisma
+
+RUN pnpm install
+
+COPY . .
+
+CMD ["npx prisma migrate dev", "pnpm dev"]

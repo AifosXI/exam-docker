@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+
+  dev:
+    build:
+      dockerfile: DockerfileDev
+    container_name: dc-graphql-dev
+    ports:
+      - "${PORT}:3000"
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT}:3000
+    stdin_open: true
+
+  prod:
+    build:
+      dockerfile: DockerfileProd
+    container_name: dc-graphql-prod
