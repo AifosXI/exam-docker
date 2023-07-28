@@ -1,0 +1,1 @@
+schaudhry/graphql-auth-prod
