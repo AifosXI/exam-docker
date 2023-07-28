@@ -6,8 +6,6 @@ COPY ["package.json", "/app/"]
 
 RUN npm install -g pnpm
 
-RUN pnpm install -g prisma
-
 RUN pnpm install --prod
 
 COPY . .
